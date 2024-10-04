@@ -59,19 +59,19 @@ export default function NestedModal() {
             <div className='gap-3 px-4'>
                 <Box sx={{ width: "100%", maxWidth: '100%', paddingTop: "10px" }}>
                     <h2 className='pt-4 text-gray-500'>Amaldagi parol</h2>
-                    <input type='password' placeholder='Amaldagi parol' className='w-full p-3 outline-orange-600 rounded-md' />
+                    <input type='password' placeholder='Amaldagi parol' className='w-full p-3 outline-[rgba(181,144,98,1)] rounded-md' />
                 </Box>
                 <Box sx={{ width: "100%", maxWidth: '100%', paddingTop: "10px" }}>
                     <h2 className='pt-4 text-gray-500'>Yangi parol</h2>
-                    <input type='password' placeholder='Yangi parol' className='w-full p-3 outline-orange-600 rounded-md' />
+                    <input type='password' placeholder='Yangi parol' className='w-full p-3 outline-[rgba(181,144,98,1)] rounded-md' />
                 </Box>
                 <Box sx={{ width: "100%", maxWidth: '100%', paddingTop: "10px" }}>
                     <h2 className='pt-4 text-gray-500'>Parolni tasdiqlash</h2>
-                    <input type='password' placeholder='Parolni tasdiqlash' className='w-full p-3 outline-orange-600 rounded-md'/>
+                    <input type='password' placeholder='Parolni tasdiqlash' className='w-full p-3 outline-[rgba(181,144,98,1)] rounded-md'/>
                 </Box>
             </div>
             <div className='flex p-4'>
-                <button type='submit' form='signIn' className='mt-[30px] bg-orange-600 w-full p-3 text-white rounded-lg'>Saqlash</button>
+                <button type='submit' form='signIn' className='mt-[30px] bg-[rgba(181,144,98,1)] w-full p-3 text-white rounded-lg'>Saqlash</button>
             </div>
           </div>
         </Box>

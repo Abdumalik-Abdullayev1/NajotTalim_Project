@@ -3,8 +3,8 @@ import * as Yup from 'yup'
 // =================== AUTH ==================
 
 export const signInValidationSchema = Yup.object().shape({
-    name: Yup.string().required('Name is required'),
-    password: Yup.string().matches(/^(?=.*[a-z])(?=.*[0-9])/, 'The password must contain a number ').required('Password is required')
+    hh_id: Yup.string().required('Id is required'),
+    password: Yup.string().required('Password is required')
 })
 
 export const signUpValidationSchema = Yup.object().shape({

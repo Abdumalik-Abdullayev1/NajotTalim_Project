@@ -30,6 +30,7 @@ const style = {
 
 
 export default function NestedModal() {
+  // const 
   const [open, setOpen] = useState(false);
   const [gender, setGender] = useState('');
   const handleOpen = () => {
@@ -76,7 +77,7 @@ export default function NestedModal() {
               <Form id='signUp'>
                 <div className='flex gap-3 px-4'>
                   <Box sx={{ width: 300, maxWidth: '100%', paddingTop: "10px" }}>
-                    <Field name='firstname' as={TextField} type='text' fullWidth variant='outlined' label='Ism' helperText={<ErrorMessage name='firstname' component='p' className='text-[red] text-[15px]' />} />
+                    <Field name='firstname' as={TextField} type='text' fullWidth variant='outlined' label='Ism' helperText={<ErrorMessage name='firstname' component='span' className='text-[red] text-[15px]' />} />
                   </Box>
                   <Box sx={{ width: 300, maxWidth: '100%', paddingTop: "10px" }}>
                     <Field name='lastname' as={TextField} type='text' fullWidth variant='outlined' label='Familiya' helperText={<ErrorMessage name='lastname' component='p' className='text-[red] text-[15px]' />} />
@@ -94,7 +95,7 @@ export default function NestedModal() {
                   <FormControl sx={{ minWidth: "49%" }}>
                     <InputLabel id="gender-label" className='p-4'>Jinsi</InputLabel>
                     <Field
-                      name='gender'
+                      value={gender}
                       as={Select}
                       label="Jinsi"
                       onChange={(event) => setFieldValue("gender", event.target.value)}
@@ -110,7 +111,7 @@ export default function NestedModal() {
               </Form>
             </Formik>
             <div className='flex p-4'>
-              <button type='submit' form='signUp' className='mt-[30px] bg-orange-600 w-full p-3 text-white rounded-lg'>Saqlash</button>
+              <button type='submit' form='signUp' className='mt-[30px] bg-[rgba(181,144,98,1)] w-full p-3 text-white rounded-lg'>Saqlash</button>
             </div>
           </div>
         </Box>

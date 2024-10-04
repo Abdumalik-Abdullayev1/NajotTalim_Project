@@ -12,6 +12,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
 import { Typography } from '@mui/material';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import img from '../../assets/NT_logo.png'
 import { Header } from '@layout';
 import { user } from '@router/routes';
 
@@ -40,15 +41,15 @@ function ResponsiveDrawer(props) {
 
   const drawer = (
     <div>
-      <Toolbar />
+      <img src={img} alt="NT-logo" className='mt-0' />
       <Divider/>
       <List>
         {user.map((item, index) => (
-          <NavLink key={index} to={item.path} className={item.path === pathname ? 'block bg-red-100 text-orange-400' : ""}>
+          <NavLink key={index} to={item.path} className={item.path === pathname ? 'block bg-red-100 text-[rgba(181,144,98,1)]' : ""}>
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <span className={item.path === pathname ? 'text-orange-400' : ""}>{item.icon}</span>
+                <span className={item.path === pathname ? 'text-[rgba(181,144,98,1)]' : ""}>{item.icon}</span>
               </ListItemIcon>
               <ListItemText primary={item.content}/>
             </ListItemButton>
@@ -59,12 +60,10 @@ function ResponsiveDrawer(props) {
       <Divider />
     </div>
   );
-
-  // Remove this const when copying and pasting into your project.
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex' }} className="overflow-y-auto">
       <CssBaseline />
       <Header handleDrawerToggle={handleDrawerToggle}/>
       <Box
@@ -72,7 +71,6 @@ function ResponsiveDrawer(props) {
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
           container={container}
           variant="temporary"
@@ -102,7 +100,7 @@ function ResponsiveDrawer(props) {
       </Box>
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }} className='bg-gray-100 w-screen h-screen'>
+        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }} className='bg-gray-100'>
         <Toolbar />
         <Typography sx={{ marginBottom: 2 }}>
         </Typography>
@@ -115,10 +113,6 @@ function ResponsiveDrawer(props) {
 }
 
 ResponsiveDrawer.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * Remove this when copying and pasting into your project.
-   */
   window: PropTypes.func,
 };
 

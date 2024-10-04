@@ -27,7 +27,7 @@ const Index = ({handleDrawerToggle}) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div" className='text-black'>
-            <h1 className='font-medium text-2xl'>User page</h1>
+            <h1>User panel</h1>
           </Typography>
           <Menu/>
         </Toolbar>

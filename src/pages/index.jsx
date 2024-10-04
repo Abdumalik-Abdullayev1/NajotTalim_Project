@@ -3,7 +3,17 @@ import User from './user-layout'
 import UserHome from './user-home'
 import Settings from './user-settings'
 import Groups from './groups'
-import SubGroup from './sub-group'
+import Tasks from './tasks'
+import TasksPage from './tasks-page'
 import Notifications from './user-notifications'
 
-export { LogIn, User, UserHome, Settings, Groups, SubGroup, Notifications }
+export {
+    LogIn,
+    User,
+    UserHome,
+    Settings,
+    Groups,
+    Tasks,
+    TasksPage,
+    Notifications
+}
