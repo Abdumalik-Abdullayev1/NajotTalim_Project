@@ -7,27 +7,41 @@ import TableHead from '@mui/material/TableHead';
 import Paper from '@mui/material/Paper';
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { topic } from '@service'
+import { topic, group } from '@service'
 
 const Index = () => {
-    const [data, setData] = useState([])
+    const [topicData, setTopicData] = useState([])
+    const [grName, setGrName] = useState()
     const { id } = useParams()
     const subject_id = id
-    console.log(subject_id);
+    const hh_id = localStorage.getItem("hh_id");
 
     const getData = async () => {
         try {
             const res = await topic.get({ subject_id })
-            if (res.status === 200) {
-                setData(res?.data?.topics);
-            }
+            setTopicData(res?.data?.topics);
         } catch (err) {
             console.error();
         }
     }
+    const getGroupName = async () => {
+        try {
+            const resp = await group.get(hh_id)
+            const groups = resp?.data?.groups || []
+            console.log(resp, "response");
+            if (groups.length > 0) {
+                const groupName = groups[0].name;
+                console.log(groupName, "groupName");
+                setGrName(groupName)
+            }
+        } catch (err) {
+            console.error("error");
+        }
+    }
     useEffect(() => {
         getData()
-    }, [subject_id])
+        getGroupName()
+    }, [subject_id, hh_id])
 
     const handleRowClick = () => {
         window.location.href = `${id}/tasks-page`;
@@ -35,7 +49,7 @@ const Index = () => {
 
     return (
         <div>
-            <h1 className="font-semibold text-center text-xl my-6">Bootcamp Foundation N48</h1>
+            <h1 className="font-semibold text-center text-xl my-6">{grName}</h1> {/*there must be group name*/}
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -46,7 +60,7 @@ const Index = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {data.map((item) => (
+                        {topicData.map((item) => (
                             <TableRow
                                 key={item.id}
                                 onClick={() => handleRowClick(item.id)}

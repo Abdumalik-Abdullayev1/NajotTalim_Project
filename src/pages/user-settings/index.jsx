@@ -1,27 +1,41 @@
 import * as React from 'react'
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SettingsModal, PasswordModal } from '@components'
+import { profile } from '@service'
 import image from '../../assets/profile.f24493e8.jpeg'
 
 const Index = () => {
-  const [gender, setGender] = useState('');
+  const [user, setUser] = useState()
+  // const [gender, setGender] = useState('');
 
-  const handleChange = (event) => {
-    setGender(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   setGender(event.target.value);
+  // };
+  
+  const getUser = async()=>{
+    try{
+      const res = await profile.get()
+      console.log(res);
+      if(res.status === 200){
+        setUser(res?.data)
+      }
+    }catch(err){
+      console.error("error");
+    }
+  }
+  useEffect(()=>{
+    getUser()
+  },[])
+
+
   return (
     <div className='flex flex-col gap-8'>
       <div className='w-[99%] h-[45vh]'>
         <div className='w-full bg-white h-full rounded-lg'>
           <div className='flex justify-between items-center pr-10'>
             <h1 className='font-bold text-2xl p-7 inline-block'>Shaxsiy ma'lumotlar</h1>
-            <SettingsModal/>
+            <SettingsModal />
           </div>
           <div className='flex gap-10 pl-16'>
             <div className='w-[150px] text-center'>
@@ -34,14 +48,21 @@ const Index = () => {
             <div className='w-[140px] h-[140px] rounded-[50%] bg-white overflow-hidden'>
               <img src={image} alt="image" />
             </div>
-            <div className='pl-20 flex flex-col gap-6'>
+            <div className='pl-20 flex flex-col gap-5'>
               <Box sx={{ width: 300, maxWidth: '100%' }}>
-                <TextField fullWidth label="Ism" id="fullWidth" />
+                <p>Ism</p>
+                <h2 className='text-[25px] font-bold'>{user?.firstname}</h2>
               </Box>
               <Box sx={{ width: 300, maxWidth: '100%' }}>
-                <TextField fullWidth label="Telefon raqam" id="fullWidth" />
+                <p>Telefon raqami</p>
+                <h2 className='text-[25px] font-bold'>{user?.phone}</h2>
+                {/* <TextField fullWidth label="Telefon raqam" id="fullWidth" /> */}
               </Box>
-              <FormControl sx={{ minWidth: 100 }}>
+              <Box sx={{ width: 300, maxWidth: '100%' }}>
+                <p>Jinsi</p>
+                <h2 className='text-[25px] font-bold'>{user?.gender}</h2>
+              </Box>
+              {/* <FormControl sx={{ minWidth: 100 }}>
                 <InputLabel id="gender-label">Jinsi</InputLabel>
                 <Select
                   labelId="gender-label"
@@ -52,17 +73,20 @@ const Index = () => {
                   <MenuItem value="male">Erkak</MenuItem>
                   <MenuItem value="female">Ayol</MenuItem>
                 </Select>
-              </FormControl>
+              </FormControl> */}
             </div>
-            <div className='flex flex-col gap-6'>
+            <div className='flex flex-col gap-5'>
               <Box sx={{ width: 300, maxWidth: '100%' }}>
-                <TextField fullWidth label="Familiya" id="fullWidth" />
+                <p>Familiya</p>
+                <h2 className='text-[25px] font-bold'>{user?.lastname}</h2>
               </Box>
               <Box sx={{ width: 300, maxWidth: '100%' }}>
-                <TextField fullWidth label="Tug'ulgan sana" id="fullWidth" />
+                <p>Tug'ulgan sana</p>
+                <h2 className='text-[25px] font-bold'>{new Date(user?.date_of_birth).toLocaleDateString()}</h2>
               </Box>
               <Box sx={{ width: 300, maxWidth: '100%' }}>
-                <TextField fullWidth label="Tug'ulgan sana" id="fullWidth" />
+                <p>HH ID</p>
+                <h2 className='text-[25px] font-bold'>{user?.hh_id}</h2>
               </Box>
             </div>
           </div>
@@ -76,7 +100,7 @@ const Index = () => {
         <div className='w-full h-full bg-white rounded-lg'>
           <div className='flex justify-between items-center'>
             <h1 className='p-6 font-extrabold text-xl'>Parol</h1>
-            <PasswordModal/>
+            <PasswordModal />
           </div>
           <p className='px-6 font-extrabold'>*******</p>
         </div>

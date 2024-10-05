@@ -26,7 +26,6 @@ export default function BasicTable() {
   const getData = async () => {
     try {
       const res = await group.get(hh_id);
-      console.log(res, "group");
       const groups = res?.data?.groups || [];
       setData(groups);
       if (groups.length > 0) {
