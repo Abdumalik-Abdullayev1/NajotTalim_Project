@@ -18,12 +18,12 @@ const Index = () => {
     try {
       const res = await auth.sign_in(values)
       if (res.status === 200) {
-        console.log(res);
         const token = res?.data?.access
         localStorage.setItem("token", token)
         localStorage.setItem("hh_id", values.hh_id)
         navigate('/user-layout')
       }
+      // console.log(values);
     } catch (err) {
       notification({title: "Kiritilgan login yoki parol noto'g'ri", type: "error"})
       console.error("Error fetching", err);

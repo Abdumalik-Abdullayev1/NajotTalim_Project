@@ -9,7 +9,7 @@ const Index = () => {
         maxWidth: "100%",
     }));
     const TextareaElement = styled("textarea")(({ theme }) => ({
-        width: "790px",
+        width: "900px",
         fontFamily: "'IBM Plex Sans', sans-serif",
         fontSize: "16px",
         fontWeight: 400,
@@ -19,6 +19,8 @@ const Index = () => {
         outline: "none",
         border: "1px solid #ccc",
         boxShadow: "0px 2px 4px rgba(0,0,0,0.1)",
+        backgroundColor: "black",
+        color: "white"
     }));
     return (
         <div>
