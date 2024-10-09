@@ -9,14 +9,12 @@ import {
 import { TextArea } from '@components';
 import { tasks } from "@service";
 import { useParams } from "react-router-dom";
-import image from '../../assets/favicon.ico';
 
 const App = () => {
   const [questionData, setQuestionData] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const hh_id = localStorage.getItem("hh_id");
   const { id } = useParams();
-  console.log(selectedQuestion);
 
   const getTasks = async () => {
     try {
@@ -68,7 +66,7 @@ const App = () => {
               <p className="p-3 text-white">Savol tanlanmagan.</p>
             )}
           </div>
-          <div className="w-full">
+          <div className="w-[300px]">
             <Select
               fullWidth
               variant="outlined"
