@@ -16,6 +16,7 @@ const App = () => {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const hh_id = localStorage.getItem("hh_id");
   const { id } = useParams();
+  console.log(selectedQuestion);
 
   const getTasks = async () => {
     try {
@@ -32,7 +33,7 @@ const App = () => {
 
   useEffect(() => {
     if (questionData.length > 0) {
-      setSelectedQuestion(questionData[0]); // Dastlabki holat sifatida birinchi savolni o'rnatamiz
+      setSelectedQuestion(questionData[0]);
     }
   }, [questionData]);
 
@@ -51,19 +52,17 @@ const App = () => {
         <div className="flex items-start gap-3">
           <div className="w-[900px] mb-5">
             {selectedQuestion ? (
-              <div className="w-[900px] h-[450px] overflow-x-auto rounded-md text-whit bg-gray-200">
+              <div className="w-[900px] h-[450px] overflow-x-auto rounded-md text-whit bg-gray-200 text-xl pt-3">
                 <span className="p-3">1.</span>
                 <span>{selectedQuestion.name}</span>
-                <div className="flex gap-2 p-3">
-                  <span>{selectedQuestion.difficulty}</span>
-                  <span>{selectedQuestion.type}</span>
-                </div>
-                <p className="p-3">Input: {selectedQuestion.input}</p>
-                <p className="p-3">Output: {selectedQuestion.output}</p>
+                <p className="p-3">Difficulty: {selectedQuestion.difficulty}</p>
+                <p className="p-3">Description: {selectedQuestion.description}</p>
+                <p className="p-3 text-2xl">Input: {selectedQuestion.input_info}</p>
+                <p className="p-3 text-2xl">Output: {selectedQuestion.output_info}</p>
                 <div className="w-full flex justify-center">
-                  <img className="w-[200px]" src={image} alt="img" />
+                  <img className="w-[200px]" src={selectedQuestion.image} alt="img" />
                 </div>
-                <p className="p-3">Constraints: {selectedQuestion.constraints}</p>
+                <p className="p-3">Constraints: {selectedQuestion.constrains}</p>
               </div>
             ) : (
               <p className="p-3 text-white">Savol tanlanmagan.</p>
