@@ -100,7 +100,7 @@ function ResponsiveDrawer(props) {
       </Box>
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }} className='bg-gray-100'>
+        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }} >
         <Toolbar />
         <Typography sx={{ marginBottom: 2 }}>
         </Typography>

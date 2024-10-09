@@ -1,7 +1,7 @@
 import https from './config'
 
-const question ={
-    get: (data)=> https.get('/api/questions/getAll', data)
+const question = {
+    get: (id)=> https.get(`/api/questions/${id}`)
 }
 
 export default question

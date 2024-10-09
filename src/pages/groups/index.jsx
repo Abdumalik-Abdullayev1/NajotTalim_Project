@@ -16,7 +16,6 @@ import { group } from '@service';
 export default function BasicTable() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-  const [subject, setSubject] = useState()
   const [value, setValue] = React.useState('one');
   const hh_id = localStorage.getItem("hh_id");
 
@@ -28,12 +27,6 @@ export default function BasicTable() {
       const res = await group.get(hh_id);
       const groups = res?.data?.groups || [];
       setData(groups);
-      if (groups.length > 0) {
-        const subjectId = groups[0].subject_id;
-        setSubject(subjectId)
-      } else {
-        console.log("No groups found.");
-      }
     } catch (err) {
       console.error("Error fetching", err);
     }
@@ -43,8 +36,8 @@ export default function BasicTable() {
     getData();
   }, [hh_id]);
 
-  const handleRowClick = () => {
-    navigate(`${subject}`);
+  const handleRowClick = (item) => {
+    navigate(`/user-layout/groups/${item?.subject_id}`);
   };
 
   return (
@@ -77,7 +70,7 @@ export default function BasicTable() {
             {data.map((item) => (
               <TableRow
                 key={item.id}
-                onClick={() => handleRowClick(item.id)}
+                onClick={() => handleRowClick(item)}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 }, cursor: 'pointer' }}
               >
                 <TableCell align="left">{item.name}</TableCell>

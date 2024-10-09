@@ -6,50 +6,52 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import Paper from '@mui/material/Paper';
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { topic, group } from '@service'
+import { useParams, useNavigate } from "react-router-dom";
+import { topic, group } from '@service';
 
 const Index = () => {
-    const [topicData, setTopicData] = useState([])
-    const [grName, setGrName] = useState()
-    const { id } = useParams()
-    const subject_id = id
+    const [topicData, setTopicData] = useState([]);
+    const [grName, setGrName] = useState();
+    const navigate = useNavigate();
+    const { id: subject_id } = useParams();
     const hh_id = localStorage.getItem("hh_id");
 
     const getData = async () => {
         try {
-            const res = await topic.get({ subject_id })
+            const res = await topic.get({ subject_id });
             setTopicData(res?.data?.topics);
         } catch (err) {
-            console.error();
+            console.error(err);
         }
-    }
+    };
+
     const getGroupName = async () => {
         try {
-            const resp = await group.get(hh_id)
-            const groups = resp?.data?.groups || []
-            console.log(resp, "response");
+            const resp = await group.get(hh_id);
+            const groups = resp?.data?.groups || [];
             if (groups.length > 0) {
-                const groupName = groups[0].name;
-                console.log(groupName, "groupName");
-                setGrName(groupName)
+                const groupName = groups[1].name;
+                setGrName(groupName);
             }
         } catch (err) {
-            console.error("error");
+            console.error("error", err);
         }
-    }
-    useEffect(() => {
-        getData()
-        getGroupName()
-    }, [subject_id, hh_id])
+    };
 
-    const handleRowClick = () => {
-        window.location.href = `${id}/tasks-page`;
+    useEffect(() => {
+        if (subject_id) {
+            getData();
+        }
+        getGroupName();
+    }, [subject_id, hh_id]);
+
+    const handleRowClick = (id) => {
+        navigate(`/user-layout/groups/tasks-page/${id}`);
     };
 
     return (
         <div>
-            <h1 className="font-semibold text-center text-xl my-6">{grName}</h1> {/*there must be group name*/}
+            <h1 className="font-semibold text-center text-xl my-6">{grName}</h1>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -60,10 +62,11 @@ const Index = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {topicData.map((item) => (
+                        {topicData?.map((item) => (
                             <TableRow
                                 key={item.id}
                                 onClick={() => handleRowClick(item.id)}
+                                // onClick={() => navigate(`/user-layout/groups/tasks/${item.id}`)}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 }, cursor: 'pointer' }}
                             >
                                 <TableCell align="left">{item.name}</TableCell>

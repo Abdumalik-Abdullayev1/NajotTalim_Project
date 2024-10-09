@@ -23,7 +23,6 @@ const Index = () => {
         localStorage.setItem("hh_id", values.hh_id)
         navigate('/user-layout')
       }
-      // console.log(values);
     } catch (err) {
       notification({title: "Kiritilgan login yoki parol noto'g'ri", type: "error"})
       console.error("Error fetching", err);

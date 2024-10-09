@@ -22,7 +22,7 @@ const Router = () => {
           <Route path="groups" element={<Groups />} />
           <Route path="settings" element={<Settings />} />
           <Route path="groups/:id" element={<Tasks />} />
-          <Route path="groups/:id/tasks-page" element={<TasksPage />} />
+          <Route path="groups/:id/:id" element={<TasksPage />} />
           <Route path="notifications" element={<Notifications />} />
         </Route>
       </Route>

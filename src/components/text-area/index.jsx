@@ -19,8 +19,8 @@ const Index = () => {
         outline: "none",
         border: "1px solid #ccc",
         boxShadow: "0px 2px 4px rgba(0,0,0,0.1)",
-        backgroundColor: "black",
-        color: "white"
+        // backgroundColor: "gra" ,
+        // color: "white"
     }));
     return (
         <div>
